@@ -1,5 +1,7 @@
 # 24hCTF - pwn - loop
 
+Categories: pwn rop
+
 The `loop` program is hand-written in assembly. It takes (2) inputs:
 the first of 33 bytes, the second of 512 bytes. It then prints the
 first input 33 times; in a loop.

